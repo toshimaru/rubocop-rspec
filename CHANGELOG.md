@@ -3,6 +3,7 @@
 ## Master (Unreleased)
 
 * Extend the list of Rails spec types for `RSpec/DescribeClass`. ([@pirj][])
+* Retire `RSpec/InvalidPredicateMatcher` cop. ([@pirj][])
 
 ## 1.40.0 (2020-06-11)
 

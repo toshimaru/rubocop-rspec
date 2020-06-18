@@ -51,7 +51,6 @@
 * [RSpec/ImplicitSubject](cops_rspec.md#rspecimplicitsubject)
 * [RSpec/InstanceSpy](cops_rspec.md#rspecinstancespy)
 * [RSpec/InstanceVariable](cops_rspec.md#rspecinstancevariable)
-* [RSpec/InvalidPredicateMatcher](cops_rspec.md#rspecinvalidpredicatematcher)
 * [RSpec/ItBehavesLike](cops_rspec.md#rspecitbehaveslike)
 * [RSpec/IteratedExpectation](cops_rspec.md#rspeciteratedexpectation)
 * [RSpec/LeadingSubject](cops_rspec.md#rspecleadingsubject)

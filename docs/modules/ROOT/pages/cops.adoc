@@ -52,7 +52,6 @@
 * link:cops_rspec.adoc#rspecimplicitsubject[RSpec/ImplicitSubject]
 * link:cops_rspec.adoc#rspecinstancespy[RSpec/InstanceSpy]
 * link:cops_rspec.adoc#rspecinstancevariable[RSpec/InstanceVariable]
-* link:cops_rspec.adoc#rspecinvalidpredicatematcher[RSpec/InvalidPredicateMatcher]
 * link:cops_rspec.adoc#rspecitbehaveslike[RSpec/ItBehavesLike]
 * link:cops_rspec.adoc#rspeciteratedexpectation[RSpec/IteratedExpectation]
 * link:cops_rspec.adoc#rspecleadingsubject[RSpec/LeadingSubject]
