@@ -22,6 +22,7 @@
 * Add detection of `let!` with a block-pass or a string literal to `RSpec/LetSetup`. ([@pirj][])
 * Add `IgnoredPatterns` configuration option to `RSpec/VariableName`. ([@jtannas][])
 * Add `RSpec/MultipleMemoizedHelpers` cop. ([@mockdeep][])
+* Remove deprecated class `::RuboCop::Cop::RSpec::Cop`. ([@bquorning][])
 
 ## 1.42.0 (2020-07-09)
 
