@@ -21,15 +21,15 @@ module RuboCop
         top_level_groups.one?
       end
 
+      def top_level_groups
+        @top_level_groups ||=
+          top_level_nodes(root_node).select { |n| example_or_shared_group?(n) }
+      end
+
       private
 
       def top_level_group?(node)
         top_level_groups.include?(node)
-      end
-
-      def top_level_groups
-        @top_level_groups ||=
-          top_level_nodes(root_node).select { |n| example_or_shared_group?(n) }
       end
 
       def top_level_nodes(node)
