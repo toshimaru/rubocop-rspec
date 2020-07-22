@@ -5,6 +5,7 @@
 * Add a new base cop class `::RuboCop::Cop::RSpec::Base`. The old base class `::RuboCop::Cop::RSpec::Cop` is deprecated, and will be removed in the next major release. ([@bquorning][])
 * Add support for subject detection after includes and example groups in `RSpec/LeadingSubject`. ([@pirj][])
 * Ignore trailing punctuation in context description prefix. ([@elliterate][])
+* Improve `RSpec/NestedGroups`, `RSpec/FilePath`, `RSpec/DescribeMethod`, `RSpec/MultipleDescribes`, `RSpec/DescribeClass`'s top-level example group detection. ([@pirj][])
 
 ## 1.42.0 (2020-07-09)
 

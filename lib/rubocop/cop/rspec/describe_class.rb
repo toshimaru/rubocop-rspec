@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module RSpec
-      # Check that the first argument to the top level describe is a constant.
+      # Check that the first argument to the top-level describe is a constant.
       #
       # @example
       #   # bad
@@ -22,7 +22,7 @@ module RuboCop
       #   describe "A feature example", type: :feature do
       #   end
       class DescribeClass < Base
-        include RuboCop::RSpec::TopLevelDescribe
+        include RuboCop::RSpec::TopLevelGroup
 
         MSG = 'The first argument to describe should be '\
               'the class or module being tested.'
@@ -51,13 +51,21 @@ module RuboCop
           )
         PATTERN
 
-        def on_top_level_describe(node, (described_value, _))
-          return if shared_group?(root_node)
-          return if valid_describe?(node)
-          return if describe_with_rails_metadata?(node)
-          return if string_constant_describe?(described_value)
+        def_node_matcher :described, <<~PATTERN
+          (block $(send #{RSPEC} :describe $_ ...) ...)
+        PATTERN
 
-          add_offense(described_value)
+        def on_top_level_group(top_level_node)
+          node, described = described(top_level_node)
+
+          return unless described
+
+          return if shared_group?(node) ||
+            valid_describe?(node) ||
+            describe_with_rails_metadata?(node) ||
+            string_constant_describe?(described)
+
+          add_offense(described)
         end
 
         private
