@@ -17,6 +17,10 @@ module RuboCop
         on_top_level_group(node)
       end
 
+      def single_top_level_group?
+        top_level_groups.one?
+      end
+
       private
 
       def top_level_group?(node)

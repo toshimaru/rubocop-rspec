@@ -57,34 +57,44 @@ module RuboCop
       #   my_class_spec.rb         # describe MyClass, '#method'
       #
       class FilePath < Base
-        include RuboCop::RSpec::TopLevelDescribe
+        include RuboCop::RSpec::TopLevelGroup
 
         MSG = 'Spec path should end with `%<suffix>s`.'
 
-        def_node_search :const_described?,  '(send _ :describe (const ...) ...)'
+        def_node_matcher :const_described, <<~PATTERN
+          (block
+            $(send #{RSPEC} _example_group $(const ...) $...) ...
+          )
+        PATTERN
+
         def_node_search :routing_metadata?, '(pair (sym :type) (sym :routing))'
 
-        def on_top_level_describe(node, args)
-          return unless const_described?(node) && single_top_level_describe?
-          return if routing_spec?(args)
+        def on_top_level_group(node)
+          return unless single_top_level_group?
 
-          glob = glob_for(args)
+          send_node, described_class, arguments = const_described(node)
 
-          return if filename_ends_with?(glob)
+          return unless described_class
+          return if routing_spec?(arguments)
 
-          add_offense(
-            node,
-            message: format(MSG, suffix: glob)
-          )
+          ensure_correct_file_path(send_node, described_class, arguments)
         end
 
         private
+
+        def ensure_correct_file_path(send_node, described_class, arguments)
+          glob = glob_for(described_class, arguments.first)
+          return if filename_ends_with?(glob)
+
+          add_offense(send_node,
+                      message: format(MSG, suffix: glob))
+        end
 
         def routing_spec?(args)
           args.any?(&method(:routing_metadata?))
         end
 
-        def glob_for((described_class, method_name))
+        def glob_for(described_class, method_name)
           return glob_for_spec_suffix_only? if spec_suffix_only?
 
           "#{expected_path(described_class)}#{name_glob(method_name)}*_spec.rb"
@@ -94,10 +104,10 @@ module RuboCop
           '*_spec.rb'
         end
 
-        def name_glob(name)
-          return unless name&.str_type?
+        def name_glob(method_name)
+          return unless method_name&.str_type?
 
-          "*#{name.str_content.gsub(/\W/, '')}" unless ignore_methods?
+          "*#{method_name.str_content.gsub(/\W/, '')}" unless ignore_methods?
         end
 
         def expected_path(constant)
