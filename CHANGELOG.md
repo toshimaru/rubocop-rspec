@@ -4,6 +4,7 @@
 
 * Make RSpec language elements configurable. ([@sl4vr][])
 * Add `RSpec/RepeatedIncludeExample` cop. ([@biinari][])
+* Remove `CustomIncludeMethods` `RSpec/EmptyExampleGroup` option in favour of the new RSpec DSL configuration. ([@pirj][])
 
 ## 1.43.1 (2020-08-17)
 
