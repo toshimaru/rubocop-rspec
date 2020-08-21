@@ -212,20 +212,10 @@ RSpec.describe RuboCop::Cop::RSpec::EmptyExampleGroup do
   end
 
   context 'when a custom include method is specified' do
-    let(:language) do
-      RuboCop::ConfigLoader
-        .default_configuration
-        .for_all_cops
-        .dig('RSpec', 'Language')
-    end
-    let(:all_cops_config) do
-      cfg = { 'TargetRubyVersion' => ruby_version }
-      cfg['TargetRailsVersion'] = rails_version if rails_version
-      cfg.merge({ 'RSpec' => { 'Language' => language } })
-    end
-
     before do
-      language['Includes']['Example'] << 'it_has_special_behavior'
+      all_cops_config
+        .dig('RSpec', 'Language', 'Includes', 'Example')
+        .push('it_has_special_behavior')
     end
 
     it 'ignores an empty example group with a custom include' do
