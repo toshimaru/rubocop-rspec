@@ -40,10 +40,13 @@ module RuboCop
         def_node_matcher :skippable?, SKIPPABLE.send_pattern
 
         def_node_matcher :skipped_in_metadata?, <<-PATTERN
-          {
-            (send _ _ <#skip_or_pending? ...>)
-            (send _ _ ... (hash <(pair #skip_or_pending? { true str }) ...>))
-          }
+          (send _ _
+            {
+              <#skip_or_pending? ...>
+              |
+              ... (hash <(pair #skip_or_pending? { true str }) ...>)
+            }
+          )
         PATTERN
 
         def_node_matcher :skip_or_pending?, '{(sym :skip) (sym :pending)}'

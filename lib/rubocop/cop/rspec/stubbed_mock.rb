@@ -106,10 +106,13 @@ module RuboCop
         #   @param node [RuboCop::AST::Node]
         #   @yield [RuboCop::AST::Node] matcher
         def_node_matcher :matcher_with_hash, <<~PATTERN
-          {
-            (send nil? :receive_messages hash)           # receive_messages(foo: 'bar', baz: 'qux')
-            (send nil? :receive_message_chain ... hash)  # receive_message_chain(:foo, bar: 'baz')
-          }
+          (send nil?
+            {
+              :receive_messages hash           # receive_messages(foo: 'bar', baz: 'qux')
+              |
+              :receive_message_chain ... hash  # receive_message_chain(:foo, bar: 'baz')
+            }
+          )
         PATTERN
 
         # @!method matcher_with_blockpass(node)

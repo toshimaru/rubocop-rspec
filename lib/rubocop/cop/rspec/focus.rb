@@ -30,8 +30,13 @@ module RuboCop
                           Examples::PENDING).node_pattern_union
 
         def_node_matcher :metadata, <<-PATTERN
-          {(send #rspec? #focusable_selector? <$(sym :focus) ...>)
-           (send #rspec? #focusable_selector? ... (hash <$(pair (sym :focus) true) ...>))}
+          (send #rspec? #focusable_selector?
+            {
+              <$(sym :focus) ...>
+              |
+              ... (hash <$(pair (sym :focus) true) ...>)
+            }
+          )
         PATTERN
 
         def_node_matcher :focused_block?, focused.send_pattern

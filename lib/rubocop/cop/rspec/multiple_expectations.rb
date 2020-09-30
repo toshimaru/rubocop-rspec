@@ -54,10 +54,14 @@ module RuboCop
         TRUE = ->(node) { node.true_type? }
 
         def_node_matcher :aggregate_failures?, <<-PATTERN
-          (block {
-              (send _ _ <(sym :aggregate_failures) ...>)
-              (send _ _ ... (hash <(pair (sym :aggregate_failures) %1) ...>))
-            } ...)
+          (block (send _ _
+              {
+                <(sym :aggregate_failures) ...>
+                |
+                ... (hash <(pair (sym :aggregate_failures) %1) ...>)
+              }
+            ) ...
+          )
         PATTERN
 
         def_node_matcher :expect?, Expectations::ALL.send_pattern
