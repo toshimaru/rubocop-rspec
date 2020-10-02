@@ -41,6 +41,63 @@ count { 1 }
 
 * https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/FactoryBot/AttributeDefinedStatically
 
+== FactoryBot/BuildList
+
+|===
+| Enabled by default | Safe | Supports autocorrection | VersionAdded | VersionChanged
+
+| Pending
+| Yes
+| Yes
+| 1.44
+| -
+|===
+
+Checks for build_list usage.
+
+This cop can be configured using the `EnforcedStyle` option
+
+=== Examples
+
+==== `EnforcedStyle: build_list`
+
+[source,ruby]
+----
+# bad
+3.times { build :user }
+
+# good
+build_list :user, 3
+
+# good
+3.times { |n| build :user, created_at: n.months.ago }
+----
+
+==== `EnforcedStyle: n_times`
+
+[source,ruby]
+----
+# bad
+build_list :user, 3
+
+# good
+3.times { build :user }
+----
+
+=== Configurable attributes
+
+|===
+| Name | Default value | Configurable values
+
+| EnforcedStyle
+| `build_list`
+| `build_list`, `n_times`
+|===
+
+=== References
+
+* https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/FactoryBot/BuildList
+
 == FactoryBot/CreateList
 
 |===

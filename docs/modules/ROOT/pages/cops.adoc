@@ -9,6 +9,7 @@
 === Department xref:cops_factorybot.adoc[FactoryBot]
 
 * xref:cops_factorybot.adoc#factorybotattributedefinedstatically[FactoryBot/AttributeDefinedStatically]
+* xref:cops_factorybot.adoc#factorybotbuildlist[FactoryBot/BuildList]
 * xref:cops_factorybot.adoc#factorybotcreatelist[FactoryBot/CreateList]
 * xref:cops_factorybot.adoc#factorybotfactoryclassname[FactoryBot/FactoryClassName]
 
