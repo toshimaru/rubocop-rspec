@@ -646,6 +646,16 @@ FactoryBot/AttributeDefinedStatically:
   VersionAdded: '1.28'
   StyleGuide: https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/FactoryBot/AttributeDefinedStatically
 
+FactoryBot/BuildList:
+  Description: Checks for build_list usage.
+  Enabled: pending
+  EnforcedStyle: build_list
+  SupportedStyles:
+  - build_list
+  - n_times
+  VersionAdded: '1.44'
+  StyleGuide: https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/FactoryBot/BuildList
+
 FactoryBot/CreateList:
   Description: Checks for create_list usage.
   Enabled: true
@@ -655,16 +665,6 @@ FactoryBot/CreateList:
   - n_times
   VersionAdded: '1.25'
   StyleGuide: https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/FactoryBot/CreateList
-
-FactoryBot/BuildList:
-  Description: Checks for build_list usage.
-  Enabled: true
-  EnforcedStyle: build_list
-  SupportedStyles:
-  - build_list
-  - n_times
-  VersionAdded: 1.xx
-  StyleGuide: https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/FactoryBot/BuildList
 
 FactoryBot/FactoryClassName:
   Description: Use string value when setting the class attribute explicitly.
